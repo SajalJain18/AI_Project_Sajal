@@ -80,10 +80,15 @@ public class MainActivity extends AppCompatActivity {
 
       // Your code here, to diplay correct and incorrect options on the buttons
         int correct_ans=-100;
-        if(operator.equals("+"))    correct_ans=operand1+operand2;
-        else if(operator.equals("-"))   correct_ans=operand1-operand2;
-        else if(operator.equals("/"))   correct_ans=operand1/operand2;
-        else    correct_ans=operand1*operand2;
+        if(operator.equals("+"))
+            correct_ans=operand1+operand2;
+        else if(operator.equals("-"))
+            correct_ans=operand1-operand2;
+        else if(operator.equals("/"))
+            correct_ans=operand1/operand2;
+        else
+            correct_ans=operand1*operand2;
+
 
         if(correctButton==0){
             button1.setText(correct_ans+"");
@@ -126,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
         //Computing the sum of score array, which has the 1 or in each index,depending on correct or incorrect answers
         int sum=0;
        // your code here
+        for(int i=0;i<score.length;i++)
+            sum=sum+score[i];
         return sum;
     }
 
@@ -145,7 +152,12 @@ public class MainActivity extends AppCompatActivity {
     public String getInterpretation(int [][]dataFrame,double slope){
        //provide interpretation based on your slope analysis
         // Your code here
-
-        return "Your Interpretation";
+        String interpretation= "all is well";
+        if(slope>0 && slope <= 0.5) interpretation="You are a slow learner";
+        else if(slope > 0.5)  interpretation=" You are a good learner";
+        else if (slope < 0)   interpretation="You are dumb and useless and a curse to the society";
+        else if (dataFrame [0][1] == 3 && slope==0) interpretation="you achieved perfection";
+        else if(dataFrame[0][0]==0 && slope==0) interpretation="you didn't learn";
+        return interpretation;
     }
 }
